@@ -2,8 +2,8 @@
 const getEtudiants = (req, res, db) => {
   db.collection('Etudiants').find({}).toArray((error, result) => {
      if (error) {
-       console.error('Error fetching notes:', error);
-       res.status(500).send('Error fetching notes');
+       console.error('Error fetching student:', error);
+       res.status(500).send('Error fetching student');
      } else {
        res.send(result);
        console.log(result);
@@ -42,7 +42,7 @@ const getEtudiants = (req, res, db) => {
  const deleteOneEtudiant = (req, res, db) => {
   const studentId = parseInt(req.params.id);
  
-  db.collection('Etudiants').deleteOne({ _id: studentId }, (error, result) => {
+  db.collection('Etudiants').deleteOne({ id: studentId }, (error, result) => {
      if (error) {
        console.error('Error deleting student:', error);
        res.status(500).send('Error deleting student');
@@ -54,6 +54,4 @@ const getEtudiants = (req, res, db) => {
   });
  };
  
- module.exports = { getEtudiants, addEtudiant, findOneEtudiant, deleteOneEtudiant }; // Export the new functions
-   
- 
+ module.exports = { getEtudiants, addEtudiant, findOneEtudiant, deleteOneEtudiant };

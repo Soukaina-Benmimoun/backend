@@ -2,8 +2,8 @@
 const getFormateurs = (req, res, db) => {
     db.collection('Formateurs').find({}).toArray((error, result) => {
        if (error) {
-         console.error('Error fetching notes:', error);
-         res.status(500).send('Error fetching notes');
+         console.error('Error fetching formateur:', error);
+         res.status(500).send('Error fetching formateur');
        } else {
          res.send(result);
          console.log(result);
@@ -32,7 +32,7 @@ const getFormateurs = (req, res, db) => {
          console.error('Error finding formateur:', error);
          res.status(500).send('Error finding formateur');
        } else if (!result) {
-         res.status(404).send('formateur not found');
+         res.status(404).send('Formateur not found');
        } else {
          res.send(result);
        }
@@ -42,18 +42,18 @@ const getFormateurs = (req, res, db) => {
    const deleteOneFormateur = (req, res, db) => {
     const formateurId = parseInt(req.params.id);
    
-    db.collection('Formateurs').deleteOne({ _id: formateurId }, (error, result) => {
+    db.collection('Formateurs').deleteOne({ id: formateurId }, (error, result) => {
        if (error) {
          console.error('Error deleting formateur:', error);
          res.status(500).send('Error deleting formateur');
        } else if (result.deletedCount === 0) {
-         res.status(404).send('formateur not found');
+         res.status(404).send('Formateur not found');
        } else {
-         res.status(200).send('formateur deleted successfully');
+         res.status(200).send('Formateur deleted successfully');
        }
     });
    };
    
-   module.exports = { getFormateurs, addFormateur, findOneFormateur, deleteOneFormateur }; // Export the new functions
+   module.exports = { getFormateurs, addFormateur, findOneFormateur, deleteOneFormateur }; 
      
    

@@ -5,25 +5,25 @@ const { connectDB } = require('../db');
 const initRoutes = async () => {
  const db = await connectDB();
 
-  // Route for getting all students
+  // Route for getting all user
  router.get('/', (req, res) => {
     const { getUsers } = require('../controllers/usersController');
     getUsers(req, res, db);
  });
  
-  // Route for adding a new student
+  // Route for adding a new user
  router.post('/new_users', (req, res) => {
    const { addUser } = require('../controllers/usersController');
    addUser(req, res, db);
   });
   
-  // Route for finding a single student by ID
+  // Route for finding a single user by ID
 router.get('/find/:id', (req, res) => {
   const { findOneUser } = require('../controllers/usersController');
   findOneUser(req, res, db);
  });
  
- // Route for deleting a single student by ID
+ // Route for deleting a single user by ID
  router.delete('/:id', (req, res) => {
   const { deleteOneUser } = require('../controllers/usersController');
   deleteOneUser(req, res, db);

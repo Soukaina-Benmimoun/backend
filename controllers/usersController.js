@@ -2,8 +2,8 @@
 const getUsers = (req, res, db) => {
     db.collection('Users').find({}).toArray((error, result) => {
        if (error) {
-         console.error('Error fetching notes:', error);
-         res.status(500).send('Error fetching notes');
+         console.error('Error fetching users:', error);
+         res.status(500).send('Error fetching users');
        } else {
          res.send(result);
          console.log(result);
@@ -12,14 +12,14 @@ const getUsers = (req, res, db) => {
    };
    
    const addUser = (req, res, db) => {
-    const newEtudiant = req.body;
+    const newUser = req.body;
    
-    db.collection('Users').insertOne(newEtudiant, (error, result) => {
+    db.collection('Users').insertOne(newUser, (error, result) => {
        if (error) {
-         console.error('Error adding new student:', error);
-         res.status(500).send('Error adding new student');
+         console.error('Error adding new user:', error);
+         res.status(500).send('Error adding new user');
        } else {
-         res.status(201).send('New student added successfully');
+         res.status(201).send('New user added successfully');
        }
     });
    };
@@ -29,10 +29,10 @@ const getUsers = (req, res, db) => {
    
     db.collection('Users').findOne({ id: userId }, (error, result) => {
        if (error) {
-         console.error('Error finding student:', error);
-         res.status(500).send('Error finding student');
+         console.error('Error finding user:', error);
+         res.status(500).send('Error finding user');
        } else if (!result) {
-         res.status(404).send('Student not found');
+         res.status(404).send('User not found');
        } else {
          res.send(result);
        }
@@ -44,12 +44,12 @@ const getUsers = (req, res, db) => {
    
     db.collection('Users').deleteOne({ id: userId }, (error, result) => {
        if (error) {
-         console.error('Error deleting student:', error);
-         res.status(500).send('Error deleting student');
+         console.error('Error deleting user:', error);
+         res.status(500).send('Error deleting user');
        } else if (result.deletedCount === 0) {
-         res.status(404).send('Student not found');
+         res.status(404).send('User not found');
        } else {
-         res.status(200).send('Student deleted successfully');
+         res.status(200).send('User deleted successfully');
        }
     });
    };

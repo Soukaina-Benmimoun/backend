@@ -12,7 +12,7 @@ const initRoutes = async () => {
  });
  
   // Route for adding a new formateur
- router.post('/new_Formateur', (req, res) => {
+ router.post('/new_formateur', (req, res) => {
    const { addFormateur } = require('../controllers/formateursController');
    addFormateur(req, res, db);
   });
